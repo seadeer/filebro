@@ -9,14 +9,15 @@ var server = app.listen(8000, function(){
     console.log("listening on port 8000\nPress Ctrl-C to stop.");
 });
 var io = require('socket.io').listen(server);
-// app.use(express.static(root));
+app.use(express.static(root));
 app.use(session({secret: 'keyboard cat', cookie: { maxAge: 60000}, resave: true, saveUninitialized: true}));
 
 
-app.get('/', function(req, res){
-    var mydir = fs.readdirSync(getUserHome());
-    console.log(mydir);
-    res.json(mydir);
+app.get('/dirstruct', function(req, res){
+    var mydir = getUserHome()
+    var target = fs.readdirSync(mydir);
+    console.log(target);
+    res.json(target);
 });
 
 function getUserHome() {
