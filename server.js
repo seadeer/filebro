@@ -20,6 +20,17 @@ app.get('/dirstruct', function(req, res){
     res.json(target);
 });
 
+app.get('/dirstruct/:id', function(req, res){
+    var mydir = getUserHome() + '/' + id 
+    if(fs.statSync(mydir).isDirectory()){
+        res.json(fs.readdirSync(mydir));
+    }
+    else if(fs.statSync(mydir).isFile()){
+        res.json({"message": "It's a file"})
+    }
+    var target = fs.readdirSync
+})
+
 function getUserHome() {
   return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 }
