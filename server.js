@@ -21,11 +21,13 @@ app.get('/dirstruct', function(req, res){
 });
 
 app.get('/dirstruct/:id', function(req, res){
-    var mydir = getUserHome() + '/' + id 
+    var mydir = getUserHome() + '/' + req.params.id 
     if(fs.statSync(mydir).isDirectory()){
+        console.log(req.params.id, req.body, "It's a directory")
         res.json(fs.readdirSync(mydir));
     }
     else if(fs.statSync(mydir).isFile()){
+        console.log(req.params.id, req.body, "It's a file")
         res.json({"message": "It's a file"})
     }
     var target = fs.readdirSync

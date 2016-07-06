@@ -16,10 +16,11 @@ $(document).ready(function(){
                 text.id = i;
                 $('body').on('click', "#"+text.id, function(){
                     console.log("click!");
-                    var filename = $('#'+text.id).val() 
+                    var filename = $(this).text() 
                     getFileInfo(filename, function(data){
+                        console.log(filename);
                         if(!data["message"]){
-                            console.log("It's a folder", data)    
+                            console.log("It's a folder")    
                         }
                         else{
                             console.log(data["message"])
