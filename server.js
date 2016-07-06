@@ -13,10 +13,9 @@ app.use(express.static(root));
 app.use(session({secret: 'keyboard cat', cookie: { maxAge: 60000}, resave: true, saveUninitialized: true}));
 
 
-app.get('/dirstruct', function(req, res){
+app.get('/dirstruct/', function(req, res){
     var mydir = getUserHome()
     var target = fs.readdirSync(mydir);
-    console.log(target);
     res.json(target);
 });
 

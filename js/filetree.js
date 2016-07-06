@@ -4,9 +4,10 @@ $(document).ready(function(){
     var two = new Two().appendTo(svgObject);
     two.style = "overflow-y:auto;";
     
-    function getJsonData(){
-        $.getJSON("/dirstruct", function(data){
-            console.log(data);
+    function getJsonData(path){
+        console.log("my path now:", path)
+        $.getJSON("/dirstruct/" + path, function(data){
+            two.clear()
             var x = 100;
             var y = 20;
             for(var i in data){
@@ -17,10 +18,12 @@ $(document).ready(function(){
                 $('body').on('click', "#"+text.id, function(){
                     console.log("click!");
                     var filename = $(this).text() 
-                    getFileInfo(filename, function(data){
-                        console.log(filename);
+                    path = path + filename + '/'
+                    getFileInfo(path, function(data){
+                        console.log("Path: ", path);
                         if(!data["message"]){
-                            console.log("It's a folder")    
+                            console.log("it's a folder")
+                            getJsonData(path)
                         }
                         else{
                             console.log(data["message"])
@@ -37,7 +40,7 @@ $(document).ready(function(){
         };
     
 
-    getJsonData()
+    getJsonData("")
     
     
     function getFileInfo(id, callback){
@@ -45,6 +48,8 @@ $(document).ready(function(){
             callback(json)
         });
     }
+
+
     
 
 });
