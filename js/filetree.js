@@ -38,6 +38,10 @@ $(document).ready(function(){
         socket.emit("request_file_tree", {path:path})
     }
 
+    function goBack(){
+        // path = 
+    }
+
 });
 
 

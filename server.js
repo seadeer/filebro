@@ -36,27 +36,6 @@ socket.on('disconnect', function(){
 })
 
 
-
-// //HTTP code
-// app.get('/dirstruct/', function(req, res){
-//     var mydir = getUserHome()
-//     var target = fs.readdirSync(mydir);
-//     res.json(target);
-// });
-
-// app.get('/dirstruct/:id', function(req, res){
-//     var mydir = getUserHome() + '/' + req.params.id 
-//     if(fs.statSync(mydir).isDirectory()){
-//         console.log(req.params.id, req.body, "It's a directory")
-//         res.json(fs.readdirSync(mydir));
-//     }
-//     else if(fs.statSync(mydir).isFile()){
-//         console.log(req.params.id, req.body, "It's a file")
-//         res.json({"message": "It's a file"})
-//     }
-//     var target = fs.readdirSync
-// })
-
 function getUserHome() {
   return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
 }
